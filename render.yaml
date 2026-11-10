@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: pcm-agromina
+    runtime: docker
+    plan: starter
+    region: ohio
+    healthCheckPath: /
+    envVars:
+      - key: DATA_DIR
+        value: /app/data
+      - key: HTTPS_ONLY
+        value: '1'
+      - key: APP_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PEDRO_PASSWORD
+        sync: false
+    disk:
+      name: pcm-data
+      mountPath: /app/data
+      sizeGB: 1
